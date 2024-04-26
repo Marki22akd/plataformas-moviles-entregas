@@ -5,7 +5,7 @@ a{
    color: #ee6;
 }
 h1{
-  text-align:center;
+  text-align: center;
   color: #eee;
 }
 h2{
@@ -13,4 +13,7 @@ h2{
 }
 h3{
   color: #eee;
+}
+strong{
+  border-bottom: 2px solid white;
 }
