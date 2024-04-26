@@ -2,6 +2,15 @@ body{
   background-color: #222;
 }
 a{
-  color: #ee6;
+   color: #ee6;
 }
-
+h1{
+  text-align:center;
+  color: #eee;
+}
+h2{
+  color: #eee;
+}
+h3{
+  color: #eee;
+}
