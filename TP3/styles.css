@@ -13,5 +13,13 @@ em{
 a{
   outline: 1px solid #333
 }
+p.fuente{
+  opacity: 100%;
+  color: #000;
+}
+.complicado{
+  font-weight: bold;
+  color: #C62;
+}
 
 
