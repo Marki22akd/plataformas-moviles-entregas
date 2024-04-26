@@ -5,7 +5,7 @@ a{
    color: #ee6;
 }
 h1{
-  text-align: center;
+  text-align:center;
   color: #eee;
 }
 h2{
@@ -16,4 +16,23 @@ h3{
 }
 strong{
   border-bottom: 2px solid white;
+}
+.the-force{
+  background-color: #444;
+  font-weight: bold;
+}
+.light-side{
+  color: #66f;
+}
+.dark-side{
+  color: #f33;
+}
+.og-trilogy{
+  list-style-type: circle;
+}
+.movies-list{
+  padding-left: 1px;
+}
+.movies-list{
+  margin-top: 1px;
 }
