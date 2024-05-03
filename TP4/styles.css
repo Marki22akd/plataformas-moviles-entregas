@@ -38,13 +38,13 @@
 
 @media screen and (width > 800px)
  and (width < 900px) {
-    figure img {
+    html img {
         display: none;
     }
  }
  @media screen and (width > 200px)
  and (width < 400px) {
-    figure img {
+    html img {
         height: 400px;
         object-fit: cover;
     }
