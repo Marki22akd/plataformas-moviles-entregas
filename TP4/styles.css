@@ -1,15 +1,17 @@
-@media (min-width: 400px) {
-    html {
+@media screen(min-width: 400px) {
+    body {
         background-color: rgb(40,60,80;
     }
 }
-@media (max_width: 800px) {
+@media screen(max_width: 800px) {
     h1{
       text-align:center;
     }
 }
-@media(max-width:50ch){
-  
+@media (orientation: landscape) {
+    body article{
+        max-width: 50ch;
+    }
 }
 @media(min-height:200px){
     h1{
