@@ -1,5 +1,5 @@
 @media screen(min-width: 400px) {
-    body {
+    html body {
         background-color: rgb(40,60,80;
     }
 }
@@ -18,3 +18,41 @@
       background-color:rgb(100,100,100);
     }
 }
+@media print {
+    html body {font-family: serif ;
+    }
+}
+
+@media (prefers-color-scheme: light){
+    html body, h1 {
+        color : #111;
+        background-color: #DDD;
+    }
+}
+@media (hover: none) {
+    a {
+        background-color:#212 ;
+        padding:2px 5px;
+    }
+}
+
+@media screen and (width > 800px)
+ and (width < 900px) {
+    figure img {
+        display: none;
+    }
+ }
+ @media screen and (width > 200px)
+ and (width < 400px) {
+    figure img {
+        height: 400px;
+        object-fit: cover;
+    }
+ }
+ @media screen and (-webkit-min-device-pixel-ratio: 2){
+    article {
+        background-color: #667 !important;
+
+    }
+ }
+
