@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Editor de Texto - DOM y JavaScript</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container my-1 my-sm-2 my-md-4 my-lg-5">
+        <h1>Editor de Texto</h1>
+        <div class="card">
+            <div class="card-body">
+                <h2>Texto</h2>
+
+                <p class="texto" id="texto">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec elementum auctor libero, vel imperdiet est. 
+                    Etiam blandit facilisis ex, nec cursus metus pharetra quis. Fusce imperdiet nisl nibh, ac aliquet ante elementum vitae.</p>
+
+                <hr class="hr">
+
+                <h2>Opciones de Formato</h2> 
+                <div class="row">
+                    <div class="col-12 col-md-3 my-1">
+                        <button id="btn-negrita" class="btn d-block w-100 btn-primary" data-formato="negrita">
+                            Bold (Negrita)
+                        </button>
+                    </div>
+                    <div class="col-12 col-md-3 my-1">
+                        <button id="btn-cursiva" class="btn d-block w-100 btn-primary" data-formato="cursiva">
+                            Italic (Cursiva)
+                        </button>
+                    </div>
+                    <div class="col-12 col-md-3 my-1">
+                        <button id="btn-subrayado" class="btn d-block w-100 btn-primary" data-formato="subrayado">
+                            Underline (Subrayado)
+                        </button>
+                    </div>
+                    <div class="col-12 col-md-3 my-1">
+                        <button id="btn-color" class="btn d-block w-100 btn-primary" data-formato="color">
+                            Color
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+
+    // editar texto
+
+    const texto = document.getElementById("texto");
+
+    const textoInput = document.createElement('input');
+    textoInput.type = 'text';
+    textoInput.placeholder = 'Nuevo texto';
+
+    const enviar = document.createElement('button');
+    enviar.classList.add('btn', 'btn-primary', 'w-20', 'm-2');
+    enviar.textContent = 'Cambiar Texto';
+
+    document.body.appendChild(textoInput);
+    document.body.appendChild(enviar);
+    // editar tamaño texto
+
+    const tamanioInput = document.createElement('input');
+    tamanioInput.type= 'number';
+    tamanioInput.placeholder = '10';
+
+    const tamanio = document.createElement('button');
+    tamanio.classList.add('btn', 'btn-primary', 'w-20', 'm-2');
+    tamanio.textContent = 'Cambiar Tamaño';
+
+    document.body.appendChild(tamanioInput);
+    document.body.appendChild(tamanio);
+
+    //
+
+    const negrita = document.getElementById('btn-negrita');
+    const cursiva = document.getElementById('btn-cursiva');
+    const subrayado = document.getElementById('btn-subrayado');
+    const color = document.getElementById('btn-color');
+
+        function funcionNegrita() {
+            texto.style.fontWeight = 'bold';
+            negrita.style.backgroundColor = 'darkblue';
+        }
+
+        function funcionCursiva() {
+            texto.style.fontStyle = 'italic';
+            cursiva.style.backgroundColor = 'darkblue';
+        }
+
+        function funcionSubrayado() {
+            texto.style.textDecoration = "underline";
+            subrayado.style.backgroundColor = 'darkblue';
+        }
+
+        function funcionColor() {
+            texto.style.color = 'blue';
+            color.style.backgroundColor = 'darkblue';
+        }
+
+        function editarTexto() {
+            texto.textContent = textoInput.value;
+        }
+        
+        function cambiarTamanio() {
+            texto.style.fontSize = tamanioInput.value + "px";
+        }
+
+
+        function handlerBoton(e) {
+            const funcionBoton = e.target.dataset.formato;
+            switch (funcionBoton) {
+                case 'negrita':
+                    funcionNegrita();
+                    break;
+                case 'cursiva':
+                    funcionCursiva();
+                    break;
+                case 'subrayado':
+                    funcionSubrayado();
+                    break;
+                case 'color':
+                    funcionColor();
+                    break;
+            }
+        }
+        enviar.addEventListener('click', editarTexto)
+        tamanio.addEventListener('click', cambiarTamanio)
+
+        document.querySelectorAll('button.btn').forEach(e => e.addEventListener('click', handlerBoton));
+    </script>
+</body>
+</html>
