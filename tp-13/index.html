@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lista de Contactos - DOM y JavaScript</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container my-1 my-sm-2 my-md-4 my-lg-5">
+        <h1>Lista de Contactos</h1>
+        <div class="card">
+            <div class="card-body">
+                <h2>Contactos</h2>
+
+                <ul id="lista-contactos"></ul>
+
+                <hr class="hr">
+
+                <h2>Nuevo Contacto</h2>
+                <form id="form-producto">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="nombre" id="input-nombre" placeholder="Nombre" aria-label="Nombre">
+                        <input type="text" class="form-control" name="apellido" id="input-apellido" placeholder="Apellido" aria-label="Apellido">
+                        <input type="text" class="form-control" name="telefono" id="input-telefono" placeholder="Telefono" aria-label="Telefono">
+                    </div>
+                    <button class="btn btn-primary" type="submit">Agregar Contacto</button>
+                    <input id="input-favorito" type="checkbox">⭐</button>
+                </form>
+                <hr class="hr">
+                <h2>Opciones</h2>
+                <button id="mostrar" class="btn btn-primary" type="submit">Mostrar Listado</button>
+                <button id="favoritos" class="btn btn-primary" type="submit">Mostrar Favoritos</button>
+                <button id="ordenar" class="btn btn-primary" type="submit">Ordenar Lista</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        let contactos = [
+            {
+                nombre: 'Juan',
+                apellido: 'Perez',
+                telefono: 1234567890,
+                favorito: false
+            },
+        ];
+
+        console.log(contactos);
+
+        function agregarContacto(nombre, apellido, telefono, favorito) {
+      if (nombre && apellido) {
+        if (telefono) {
+          contactos.push({ nombre, apellido, telefono, favorito });
+          
+        } else {
+          alert("Por favor, ingrese un nombre y apellido válidos.")
+          location.reload()
+        }
+      } else {
+        alert("Por favor, ingrese un telefono válido.")
+        location.reload()
+      }
+    }
+
+        function mostrarListado() {
+            const lista = document.getElementById("lista-contactos");
+            lista.innerHTML = "";
+            contactos.forEach(contacto => {
+                const li = document.createElement('li');
+                lista.appendChild(li);
+                li.textContent = `${contacto.nombre} ${contacto.apellido} - ${contacto.telefono}`;
+                lista.appendChild(li);
+            });
+            lista.firstElementChild
+        }
+        function mostrarFavoritos(){
+            const lista = document.getElementById("lista-contactos");
+            lista.innerHTML = "";
+            contactos.forEach(contacto => {
+                if(contacto.favorito){
+                    const li = document.createElement('li');
+                    lista.appendChild(li);
+                    li.textContent = `${contacto.nombre} ${contacto.apellido} - ${contacto.telefono}`;
+                    lista.appendChild(li);
+                }
+            });
+            lista.firstElementChild
+        }
+
+
+        function ordenarLista(){
+            const lista = document.getElementById("lista-contactos");
+            contactos.sort((a, b) => a.nombre.localeCompare(b.nombre));
+            lista.innerHTML = "";
+            mostrarListado();
+        };
+
+        const mostrar = document.getElementById("mostrar");
+        mostrar.addEventListener('click', mostrarListado);
+        const favoritos = document.getElementById("favoritos");
+        favoritos.addEventListener('click', mostrarFavoritos);
+        const ordenar = document.getElementById("ordenar");
+        ordenar.addEventListener('click', ordenarLista);
+
+        function handlerFormulario(e) {
+            e.preventDefault();
+            const inputNombre = e.target.querySelector('#input-nombre');
+            const inputApellido = e.target.querySelector('#input-apellido');
+            const inputTelefono = e.target.querySelector('#input-telefono');
+            const inputFavorito = e.target.querySelector('#input-favorito');
+            
+            const nombre = inputNombre.value;
+            const apellido = inputApellido.value;
+            const telefono = inputTelefono.value;
+
+            inputNombre.value = "";
+            inputApellido.value = "";
+            inputTelefono.value = "";
+            if (inputFavorito.checked){
+                const favorito = true;
+                agregarContacto(nombre, apellido, telefono + ("⭐"), favorito);
+            //    agregarFavorito(nombre, apellido, telefono);
+            }
+            else{
+                const favorito = false;
+                agregarContacto(nombre, apellido, telefono, favorito);
+            }
+            
+        }
+
+        document.querySelector('form').addEventListener('submit', handlerFormulario);
+    </script>
+</body>
+</html>
